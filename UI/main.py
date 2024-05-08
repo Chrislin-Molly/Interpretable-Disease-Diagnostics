@@ -48,7 +48,7 @@ class PneumoniaDiagnosisApp(QMainWindow):
         # Report text label
         self.report_label = QLabel(self)
         self.report_label.setAlignment(QtCore.Qt.AlignCenter)
-        self.report_label.setFont(QFont("Arial", 16))
+        self.report_label.setFont(QFont("Arial", 12))
         self.report_label.setWordWrap(True)
         self.bottom_layout.addWidget(self.report_label)
 
@@ -147,7 +147,7 @@ class PneumoniaDiagnosisApp(QMainWindow):
 
         if image_name in self.csv_data:
             report = self.csv_data[image_name]['Report']
-            QTimer.singleShot(12000, lambda: self.report_label.setText(f"Report: {report}"))  # Set report text
+            QTimer.singleShot(9000, lambda: self.report_label.setText(f"Report: {report}"))  # Set report text
 
 
 if __name__ == "__main__":
