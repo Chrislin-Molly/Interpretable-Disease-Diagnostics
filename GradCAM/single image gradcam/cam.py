@@ -89,15 +89,14 @@ def add_image_to_csv(csv_file, image_path):
 def remove_columns_from_csv(csv_file):
     with open(csv_file, 'w', newline='') as file:
             pass  # Writing nothing will clear the file
-# /////////////
+
 def main_exec(image_path):
+    root_path = "D:\SCT\Interpretable_Disease_Diagnostics_using_Deep_Learning_and_XAI"
     # parser config
-    config_file = "D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\config.ini"
+    config_file = root_path + "\config.ini"
     cp = ConfigParser()
     cp.read(config_file)
 
-    # image_path =r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\data\images\00002980_000.png"
-    # image_path =r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\data\images\00003028_006.png"
     # default config
     output_dir = cp["DEFAULT"].get("output_dir")
     print(output_dir)
@@ -118,7 +117,7 @@ def main_exec(image_path):
     best_weights_path = os.path.join(output_dir, f"best_{output_weights_name}")
 
     # CAM config
-    bbox_list_file = r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\data\buff.csv"
+    bbox_list_file = root_path + "\data\buff.csv"
     use_best_weights = cp["CAM"].getboolean("use_best_weights")
     
     print("** load model **")
@@ -128,7 +127,7 @@ def main_exec(image_path):
     else:
         print("** use last weights **")
         model_weights_path = weights_path
-    model_weights_path=r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\experiments\1\best_weights.h5"
+    model_weights_path= root_path + "\experiments\1\best_weights.h5"
     # Load DenseNet model
     base_model = DenseNet121(weights=None, include_top=False, input_shape=(image_dimension, image_dimension, 3))
     x = base_model.output
@@ -144,7 +143,7 @@ def main_exec(image_path):
 
     print("create a generator for loading transformed images")
     cam_sequence = AugmentedImageSequence(
-        dataset_csv_file=r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\experiments\1\test.csv",
+        dataset_csv_file= root_path + "\experiments\1\test.csv",
         class_names=class_names,
         source_image_dir=image_source_dir,
         batch_size=1,
@@ -171,13 +170,12 @@ def main_exec(image_path):
         axis=1,
     )
 
-#////////////////////
 def main_dev():
-    # image_path =r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\data\images\00002980_000.png"
-    image_path =r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\data\images\00005869_001.png"
-    # image_path =r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\data\images\00003028_006.png"
+    # image_path = root_path + "\data\images\00002980_000.png"
+    image_path = root_path + "\data\images\00005869_001.png"
+    # image_path = root_path + "\data\images\00003028_006.png"
 
-    csv_file = r"D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\data\buff.csv"
+    csv_file =  root_path + "\data\buff.csv"
     add_image_to_csv(csv_file, image_path)
     main_exec(image_path)
     # Example: Removing columns at the end

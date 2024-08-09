@@ -1,3 +1,0 @@
-image_name,Prediction,gradcam_filepath,Report
-00005869_001.png,Positive,D:\Tapasvi\Projects\Main_Project_Fully_Functional\GradCAM\CheXNet-Keras-master\experiments\1\cam\Pneumonia.00005869_001.png,Pneumonia detected in the upper right lung region. sdfij sfioejwef owiejfoiwjefoij wqefw eofpw oeflw.e fpweifjpwef-w ef-9 weokfweofk-w ef- woekf- oweif-0i
-00002980_000.png,Normal,,No abnormalities detected.
